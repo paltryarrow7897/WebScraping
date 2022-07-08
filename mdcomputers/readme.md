@@ -12,3 +12,7 @@ For example, for GPU:
 python3 mdcomputersScraper.py graphics-card
 
 The script creates a CSV file of the < category > after running.
+
+
+Visualization on Power BI.
+![image](https://user-images.githubusercontent.com/67114340/177948987-93108ea1-6748-45ba-81f7-445019ecfafe.png)
