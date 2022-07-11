@@ -9,7 +9,8 @@ import sys
 
 item_names = []
 item_prices = []
-items = {"Name":item_names, "Price":item_prices}
+item_urls = []
+items = {"Name":item_names, "Price":item_prices, "URL":item_urls}
 
 # Set headless option
 options = Options()
@@ -26,8 +27,7 @@ driver.get(url)
 driver.implicitly_wait(5)
 
 # XPATH Selectors
-ITEM_NAME_XPATH_SELECTOR = '//*[@id="content"]/div[2]/div[2]'
-ITEM_PRICE_XPATH_SELECTOR = '//*[@id="content"]/div[2]/div[2]'
+ITEM_XPATH_SELECTOR = '//*[@id="content"]/div[2]/div[2]'
 ITEM_COUNT_XPATH_SELECTOR = '//*[@id="content"]/div[2]/div[3]/div/div[2]'
 
 # Regex for finding number of items and pages
@@ -55,11 +55,13 @@ for i in range(item_pages):
     # Loop over each item of the category on the current page
     items_on_this_page = find_items_on_this_page()
     for index in range(items_on_this_page):
-        item_name = driver.find_element(By.XPATH, f'{ITEM_NAME_XPATH_SELECTOR}/div[{index+1}]/div/div[2]/h4/a').text
-        item_price = int(driver.find_element(By.XPATH, f'{ITEM_PRICE_XPATH_SELECTOR}/div[{index+1}]/div/div[2]/div[2]/span[1]').text[1:].replace(",",""))
+        item_name = driver.find_element(By.XPATH, f'{ITEM_XPATH_SELECTOR}/div[{index+1}]/div/div[2]/h4/a').text
+        item_url = driver.find_element(By.XPATH, f'{ITEM_XPATH_SELECTOR}/div[{index+1}]/div/div[2]/h4/a').get_attribute('href')
+        item_price = int(driver.find_element(By.XPATH, f'{ITEM_XPATH_SELECTOR}/div[{index+1}]/div/div[2]/div[2]/span[1]').text[1:].replace(",",""))
         
         item_names.append(item_name)
         item_prices.append(item_price)
+        item_urls.append(item_url)
 
 # Save to CSV
 df = pd.DataFrame(data=items)
