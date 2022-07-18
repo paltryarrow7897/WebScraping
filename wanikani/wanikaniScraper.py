@@ -17,7 +17,7 @@ arg_2 = sys.argv[2]
 start_lvl = 1
 end_lvl = 1
 
-if int(arg_1) < int(arg_2):
+if int(arg_1) < int(arg_2) & int(arg_1) > 0:
     start_lvl = int(arg_1)
     end_lvl = int(arg_2)
 
@@ -178,8 +178,8 @@ radicals_df = pd.DataFrame(radicals_dict)
 kanjis_df = pd.DataFrame(kanjis_dict)
 vocabs_df = pd.DataFrame(vocabs_dict)
 
-radicals_df.to_csv("radical.csv")
-kanjis_df.to_csv("kanji.csv")
-vocabs_df.to_csv("vocabulary.csv")
+radicals_df.to_csv(f"radical_{start_lvl}_{end_lvl}.csv")
+kanjis_df.to_csv(f"kanji_{start_lvl}_{end_lvl}.csv")
+vocabs_df.to_csv(f"vocabulary_{start_lvl}_{end_lvl}.csv")
 
 driver.quit()
