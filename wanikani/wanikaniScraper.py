@@ -11,15 +11,8 @@ options = Options()
 options.add_argument("headless")
 driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
 
-arg_1 = sys.argv[1]
-arg_2 = sys.argv[2]
-
-start_lvl = 1
-end_lvl = 1
-
-if int(arg_1) < int(arg_2) & int(arg_1) > 0:
-    start_lvl = int(arg_1)
-    end_lvl = int(arg_2)
+start_lvl = int(sys.argv[1])
+end_lvl = int(sys.argv[2])
 
 # Initialize Radical lists and dict
 radicals_character = []
