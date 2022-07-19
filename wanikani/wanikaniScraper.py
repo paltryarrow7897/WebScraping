@@ -3,12 +3,14 @@ from selenium.webdriver.edge.service import Service
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.options import Options
+from tqdm import tqdm
 import pandas as pd
 import sys
 
 # Open Browser
 options = Options()
 options.add_argument("headless")
+options.add_argument("log-level=1")
 driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
 
 start_lvl = int(sys.argv[1])
@@ -87,7 +89,7 @@ def get_radicals():
     RADICAL_NAME_CSS_SELECTOR = '#information > div > p'
     RADICAL_MNEMONIC_CSS_SELECTOR = '#information > section'
 
-    for index, page in enumerate(RADICAL_URL_LIST):
+    for index, page in enumerate(tqdm(RADICAL_URL_LIST, desc=f"Level {i} Radical        ")):
         driver.get(page)
         driver.implicitly_wait(5)
         
@@ -107,7 +109,7 @@ def get_kanji():
     KANJI_MNEMONIC_CSS_SELECTOR = '#meaning > section'
     KANJI_READING_CSS_SELECTOR = '#reading > section'
 
-    for index, page in enumerate(KANJI_URL_LIST):
+    for index, page in enumerate(tqdm(KANJI_URL_LIST, desc=f"Level {i} Kanji            ")):
         driver.get(page)
         driver.implicitly_wait(5)
 
@@ -129,7 +131,7 @@ def get_vocabulary():
     VOCAB_READING_CSS_SELECTOR = '#reading > section'
     VOCAB_MNEMONIC_CSS_SELECTOR = '#meaning > section'
 
-    for index, page in enumerate(VOCABULARY_URL_LIST):
+    for index, page in enumerate(tqdm(VOCABULARY_URL_LIST, desc=f"Level {i} Vocabulary      ")):
         driver.get(page)
         driver.implicitly_wait(5)
 
@@ -146,7 +148,7 @@ def get_vocabulary():
         vocabs_url.append(page)
 
 # Main
-for i in range(start_lvl, end_lvl+1):
+for i in tqdm(range(start_lvl, end_lvl+1), desc="Level Progress        "):
     url = f'https://www.wanikani.com/level/{i}'
 
     driver.get(url)
@@ -162,9 +164,11 @@ for i in range(start_lvl, end_lvl+1):
     get_vocabulary_url_list()
 
     # Get information of Radical, Kanji and Vocabulary
+    print()
     get_radicals()
     get_kanji()
     get_vocabulary()
+    print()
 
 # Write to DataFrame and then CSV
 radicals_df = pd.DataFrame(radicals_dict)
