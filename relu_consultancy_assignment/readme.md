@@ -2,19 +2,19 @@
 Python Task of scraping data from 1000 Amazon links using Selenium.
 
 ## Files
-_`amazon.csv`_ - Table of links to scrape.
-_`scraper.py`_ - Python script to scrape data from web pages.
-_`scraped_full.csv`_ - Table of all scraped data from rows 0 to 999. This file shows the Python script is unable to work for 1000 rows as a lot of data is lost.
-_`scraped_merged.csv`_ - Merged table of scraped data of 100 rows, i.e, 0-99, 100-199, 200-299, etc. All these files can be seen in _`CSV files/`_.
-_`scraped_merged.json`_ - _`scraped_merged.csv`_ converted to JSON.
+* _`amazon.csv`_ - Table of links to scrape.
+* _`scraper.py`_ - Python script to scrape data from web pages.
+* _`scraped_full.csv`_ - Table of all scraped data from rows 0 to 999. This file shows the Python script is unable to work for 1000 rows as a lot of data is lost.
+* _`scraped_merged.csv`_ - Merged table of scraped data of 100 rows, i.e, 0-99, 100-199, 200-299, etc. All these files can be seen in _`CSV files/`_.
+* _`scraped_merged.json`_ - _`scraped_merged.csv`_ converted to JSON.
 
 ## Usage
 Install requirements from `requirements.txt`.
 I use Microsoft Edge so Selenium uses Edge Web Driver.
 You'll need to have Edge installed or change Web Driver inside `scraper.py`.
 
-Usage - `python3 scraper.py <start_row_in_amazon.csv> <end_row_in_amazon.csv>`
-Output is a CSV file with name of the format - `scraper_<start_row>_<end_row>.csv`
+* Usage - `python3 scraper.py <start_row_in_amazon.csv> <end_row_in_amazon.csv>`
+* Output is a CSV file with name of the format - `scraper_<start_row>_<end_row>.csv`
 
 For example, to scrape the first 100 rows, use `python3 scraper.py 0 99`
 And output is saved to `scraper_0_99.csv`
