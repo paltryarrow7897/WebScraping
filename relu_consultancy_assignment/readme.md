@@ -33,7 +33,7 @@ And output is saved to `scraper_0_99.csv`
 * Some pages were not scraped. Data which couldn't be scraped was marked as 'N/A'.
 * These 10 CSV files were then merged using `pd.concat()` to create `scraped_merged.csv`.
 * Only 1 URL (row 4) was found to have no product represented by all 'N/A's in `scraped_merged.csv`.
-* The CSV was converted to JSON on _`https://csvjson.com/csv2json`_. Result as `scraped_merged.json`.
+* The CSV was converted to JSON on https://csvjson.com/csv2json. Result as `scraped_merged.json`.
 * Time taken by script for every 100 rows:
     + 000 - 099 06:31
     + 100 - 199 05:46
